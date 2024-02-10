@@ -1,0 +1,44 @@
+1. Объявить массив данных типа double размером 3 на 3, ввести с консоли его значения, вывести на консоль сумму его элементов, расположенных на главной диагонали и сумму элементов, расположенных на побочной диагонали.
+#include <stdio.h>
+
+int main()
+{
+	int m=3;
+    double massiv[m][m];
+    double sum1, sum2;
+    
+    for (int i=0; i<m; i++)
+        for (int j=0; j<m; j++)
+        {
+            printf("massiv[%d][%d] = ", i+1, j+1);
+            scanf("%lf", &massiv[i][j]);
+        }
+        printf("Matritca: ");
+        for (int i = 0; i < m; i++)
+    {
+        for (int j = 0; j < m; j++)
+        {
+            printf("%f  ", massiv[i][j]);
+        }
+        printf("\n");
+    }
+ 
+    sum1 = 0;
+    sum2 = 0;
+ 
+    for (int i = 0; i < m; i++)
+    {
+        sum1 += massiv[i][i];
+        sum2 += massiv[i][(m-1)-i];
+    }
+ 
+    printf("Glavnaya = %f\n", sum1);
+    printf("Pobochnaya = %f\n", sum2);
+    system("pause");
+    return 0;
+    
+    
+    
+    
+    return 0;
+}
