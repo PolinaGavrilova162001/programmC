@@ -62,11 +62,11 @@ int main()
 {
     double a, b, c, D=0, x1, x2;
     
-    printf("Введите коэффициент a: ");
+    printf("Vvedite a: ");
     scanf("%lf", &a);
-    printf("Введите коэффициент b: ");
+    printf("Vvedite b: ");
     scanf("%lf", &b);
-    printf("Введите коэффициент c: ");
+    printf("Vvedite c: ");
     scanf("%lf", &c);
     
     D = b*b - 4*a*c;
