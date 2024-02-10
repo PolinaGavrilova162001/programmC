@@ -1,4 +1,4 @@
-1.
+1. Решение квадратного уравнения.
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
@@ -22,7 +22,7 @@ int main()
     return 0;
 }
 
-2.
+2. Решение квадратного уравнения с условиями, если дискриминант больше нуля, равен нулю, меньше нуля.
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
@@ -53,7 +53,7 @@ int main()
     return 0;
 }
 
-3.
+3. Решение квадратных уравнений с запросом ввода коэффициентов.
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
@@ -87,7 +87,7 @@ int main()
     return 0;
 }
 
-4.
+4. Решение квадратных уравнений зацикленная программа.
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
