@@ -36,9 +36,4 @@ int main()
     printf("Pobochnaya = %f\n", sum2);
     system("pause");
     return 0;
-    
-    
-    
-    
-    return 0;
 }
