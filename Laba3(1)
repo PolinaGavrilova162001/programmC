@@ -7,7 +7,7 @@ char str[x];
 if(fgets(str,x,stdin))
 {
 int i = 0;
-while(str[i] != '\n')
+while(str[i] ?= '\n')
 {
 if(isalpha(str[i])) /*проверяем строчный или заглавный символ*/
 {
