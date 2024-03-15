@@ -6,48 +6,58 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-double ** create_2d (int, int);
-void free_2d  (double **);
-int  input_2d (double **, int, int);
-void print_2d (double **, int, int);
- 
-int main (void) {
-    int n;
-    printf("n = ");
-    if (scanf("%d", &n) != 1 || n < 1) {
-        fprintf(stderr, "No!\n");
-        return 1;
-    }
-     double **m1 = create_2d(n, n);
-    if (m1 == NULL) {
-        fprintf(stderr, "No!\n");
-        return 2;
-    }
-     double **m2 = create_2d(n, n);
-    if (m2 == NULL) {
-        fprintf(stderr, "No!\n");
-        free_2d(m1);
-        return 2;
-    }
-     if (input_2d(m1, n, n) == 1) {
-        fprintf(stderr, "No!\n");
-        free_2d(m1);
-        free_2d(m2);
-        return 1;
-    }
-     if (input_2d(m2, n, n) == 1) {
-        fprintf(stderr, "No!\n");
-        free_2d(m1);
-        free_2d(m2);
-        return 1;
-    }
-     puts("Pervaya matrix:");
-    print_2d(m1, n, n);
-    puts("");
-    puts("Vtoraya matrix:");
-    print_2d(m2, n, n);
- 
-     free_2d(m1);
-    free_2d(m2);
-    return 0;
+double **createMatrix(int n) {
+   double **matrix = malloc(sizeof(double*) * n);
+   for (int i = 0; i < n; ++i) {
+      matrix[i] = calloc(1, sizeof(double) * n); 
+   }
+   return matrix;
+}
+
+void destroyMatrix(double **matrix, int n) { 
+   for (int i = 0; i < n; ++i) { 
+      free(matrix[i]); 
+   } 
+   free(matrix); 
+}
+
+double** matrixOperation(double **m1, double **m2, char op, int n) {
+   switch (op) {
+      case '+':
+         double **result = createMatrix(n);
+         for (int i=0;i<n;++i)
+            for (int j=0;j<n;++j)
+result[i][j] = m1[i][j] + m2[i][j];
+return result;
+case '-':
+return createMatrix(n); // implement subtraction
+case '*':
+// implement multiplication
+}
+}
+int main(void) {
+int n;
+printf("Введите размер матрицы: ");
+scanf("%d", &n);
+double **m1 = createMatrix(n), **m2 = createMatrix(n);
+    for(int i = 0; i < n; ++i)
+        for(int j = 0; j < n; ++j)
+scanf("%lf", &m1[i][j]);
+    for(int i = 0; i < n; ++i)
+        for(int j = 0; j < n; ++j)
+scanf("%lf", &m2[i][j]);
+char op;
+printf("Выберите операцию (+, -, *): ");
+scanf(" %c", &op);
+double** result = matrixOperation(m1, m2, op, n);
+for(int i = 0; i < n; ++i){
+for(int j = 0; j < n; ++j){
+printf("%.2lf", result[i][j]);
+}
+puts("");
+}
+destroyMatrix(m1, n);
+destroyMatrix(m2, n);
+destroyMatrix(result, n);
+return 0;
 }
