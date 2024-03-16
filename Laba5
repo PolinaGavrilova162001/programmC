@@ -30,9 +30,8 @@ double** matrixOperation(double **m1, double **m2, char op, int n) {
 result[i][j] = m1[i][j] + m2[i][j];
 return result;
 case '-':
-return createMatrix(n); // implement subtraction
+return createMatrix(n);
 case '*':
-// implement multiplication
 }
 }
 int main(void) {
