@@ -1,7 +1,8 @@
+/*
 Напишите программу, которая выводит на экран следующие строки:
 Hello, World!
 The world is yours!
-
+*/
 
 
 #include <stdio.h>
