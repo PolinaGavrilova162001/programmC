@@ -1,76 +1,34 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-
-int main()
-{
-    FILE *input, *output;
-    char buffer[1024];
-    int year = 1980;
-    
-    input=fopen("input.txt", "r");
-    if (input==NULL)
-    {
-        fputs("Error", stderr);
-        exit(1);
-    }
-    
-    output=fopen("output.txt", "w");
-    if (output==NULL)
-    {
-        fprintf(stderr, "Error\n");
-        exit(1);
-    }
-    
-    while (fgets(buffer, sizeof(buffer), input)!=NULL)
-    {
-        char*year_str=strtok(buffer, "\n");
-        if (year_str!=NULL)
-        {
-            int parsed_year=atoi(year_str);
-            if (parsed_year>year)
-            {
-                fputs(buffer, output);
-            }
-        }
-    }
-
-
+    Создать текстовый файл с записями следующего вида:
+Иванов Петр Сергеевич 1975
+Сидоров Николай Андреевич 1981
+….
+Воробьянинов Ипполит Матвеевич 1978
+	Прочитать данные из этого файла и записать в другой только те строки, которые относятся к родившимся позднее 1980 года.
 
 
     #include <stdio.h>
-#include <stdlib.h>
+
 int main() {
-FILE *fpIn, *fpOut;
-char name[100], year[5];
-int yearRead;
-// Открываем входной и выходной файлы
-if ((fpIn = fopen("input.txt", "r")) == NULL) {
-    printf("Ошибка открытия входного файла!\n");
-    exit(1);
-}
-if ((fpOut = fopen("output.txt", "w")) == NULL) {
-    fclose(fpIn);
-    printf("Ошибка создания выходного файла!\n");
-    exit(2);
-}
+    FILE *in_file, *out_file;
+    char first_name[20], middle_name[20], last_name[20];
+    int year;
 
-while (fscanf(fpIn, "%s %c", name, year) == 2) {
-    // Считываем данные из входного файла
-    yearRead = atoi(year);
+    in_file = fopen("input.txt", "r");
+    out_file = fopen("output.txt", "w");
 
-    if (yearRead > 1980) {
-        // Если год рождения больше 1980, записываем в выходной файл
-sprintf(year, "%d", yearRead); // форматированный вывод года
-fprintf(fpOut, "%s %s\n", name, year);
-}
-}
-fclose(fpIn);  // Закрываем входные файлы
+    if (in_file == NULL || out_file == NULL) {
+        printf("Error opening file\n");
+        return 1;
+    }
 
-return 0;
-}
-    fclose(input);
-    fclose (output);
-    
+    while (fscanf(in_file, "%s %s %s %d", last_name, first_name, middle_name, &year) == 4) {
+        if (year > 1980) {
+            fprintf(out_file, "%s %s %s %d\n", last_name, first_name, middle_name, year);
+        }
+    }
+
+    fclose(in_file);
+    fclose(out_file);
+
     return 0;
 }
