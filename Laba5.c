@@ -6,9 +6,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-double **createMatrix(int n) {
+double **createMatrix(int n)
+{
    double **matrix = malloc(sizeof(double*) * n);
-   for (int i = 0; i < n; ++i) {
+   for (int i = 0; i < n; ++i)
+   {
       matrix[i] = calloc(1, sizeof(double) * n); 
    }
    return matrix;
@@ -21,18 +23,29 @@ void destroyMatrix(double **matrix, int n) {
    free(matrix); 
 }
 
-double** matrixOperation(double **m1, double **m2, char op, int n) {
-   switch (op) {
+double** matrixOperation(double **m1, double **m2, char op, int n)
+{
+   switch (op)
+   {
       case '+':
          double **result = createMatrix(n);
          for (int i=0;i<n;++i)
             for (int j=0;j<n;++j)
-result[i][j] = m1[i][j] + m2[i][j];
-return result;
-case '-':
-return createMatrix(n);
-case '*':
-}
+               result[i][j] = m1[i][j] + m2[i][j];
+               return result;
+      case '-':
+         double **result2 = createMatrix(n);
+         for (int i=0; i<n; ++i)
+            for (int j=0; j<n; ++j)
+            result2[i][j] = m1[i][j] - m2[i][j];
+            return result2;
+      case '*':
+        double **result3 = createMatrix(n);
+        for (int i=0; i<n; ++i)
+            for (int j=0; j<n; ++j)
+            result3[i][j] = m1[i][j] * m2[i][j];
+            return result3;
+   }
 }
 int main(void) {
 int n;
