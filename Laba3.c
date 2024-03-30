@@ -6,8 +6,8 @@
 
 int main ()
 {
-    char c[81];
-    if (fgets(c, 81, stdin))
+    char c[81];  //ввод строки длиной 80 символов
+    if (fgets(c, 81, stdin))  //считывает символы из потока и сохраняет строкой
     for (int i=0; c[i]; i++)
     if (c[i]=='a'||c[i]=='b')c[i]-=32;
     puts(c);
