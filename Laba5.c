@@ -45,11 +45,21 @@ double** matrixOperation(double **m1, double **m2, char op, int n)
             for (int j=0; j<n; ++j)
             result3[i][j] = m1[i][j] * m2[i][j];
             return result3;
+      case '/':
+        double **result4 = createMatrix(n);
+        for (int i=0; i<n; ++i)
+            for (int j=0; j<n; ++j)
+            result4[i][j] = m1[i][j]/m2[i][j];
+            return result4;
+            break;
+       default:
+        printf("Takou operacii net\n");
+        break;
    }
 }
 int main(void) {
 int n;
-printf("Введите размер матрицы: ");
+printf("n=");
 scanf("%d", &n);
 double **m1 = createMatrix(n), **m2 = createMatrix(n);
     for(int i = 0; i < n; ++i)
@@ -59,7 +69,7 @@ scanf("%lf", &m1[i][j]);
         for(int j = 0; j < n; ++j)
 scanf("%lf", &m2[i][j]);
 char op;
-printf("Выберите операцию (+, -, *): ");
+printf("+, -, *, /: ");
 scanf(" %c", &op);
 double** result = matrixOperation(m1, m2, op, n);
 for(int i = 0; i < n; ++i){
