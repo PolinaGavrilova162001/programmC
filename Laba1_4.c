@@ -8,7 +8,7 @@ int main()
 {
     double a, b, c, D=0, x1, x2;
     int x;
-    do {
+    do {  //цикл если x=1, то цикл программы повторяется
     
     printf("Vvedite a: ");
     scanf("%lf", &a);
