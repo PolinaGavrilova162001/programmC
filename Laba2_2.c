@@ -16,7 +16,7 @@ int main()
             scanf("%lf", &massiv[i][j]);
         }
     int kv_m[m][m];
-    int i, j, k = 0, l;
+    int i, j, l;
         for (i = 0; i < m; i++)
             for (j = 0; j < m; j++)
             {
