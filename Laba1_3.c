@@ -8,8 +8,8 @@ int main()
 {
     double a, b, c, D=0, x1, x2;
     
-    printf("Vvedite a: ");
-    scanf("%lf", &a);
+    printf("Vvedite a: ");  //вывод запроса на ввод пользователя значений переменных
+    scanf("%lf", &a);  //сохранение значений переменных, введенных пользователем
     printf("Vvedite b: ");
     scanf("%lf", &b);
     printf("Vvedite c: ");
