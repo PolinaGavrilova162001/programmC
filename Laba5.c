@@ -16,8 +16,10 @@ double **createMatrix(int n)
    return matrix;
 }
 
-void destroyMatrix(double **matrix, int n) { 
-   for (int i = 0; i < n; ++i) { 
+void destroyMatrix(double **matrix, int n)
+{ 
+   for (int i = 0; i < n; ++i)
+   { 
       free(matrix[i]); 
    } 
    free(matrix); 
@@ -57,7 +59,8 @@ double** matrixOperation(double **m1, double **m2, char op, int n)
         break;
    }
 }
-int main(void) {
+int main(void)
+{
 int n;
 printf("n=");
 scanf("%d", &n);
@@ -72,8 +75,10 @@ char op;
 printf("+, -, *, /: ");
 scanf(" %c", &op);
 double** result = matrixOperation(m1, m2, op, n);
-for(int i = 0; i < n; ++i){
-for(int j = 0; j < n; ++j){
+for(int i = 0; i < n; ++i)
+{
+for(int j = 0; j < n; ++j)
+{
 printf("%.2lf", result[i][j]);
 }
 puts("");
