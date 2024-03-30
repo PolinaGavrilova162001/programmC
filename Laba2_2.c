@@ -17,17 +17,13 @@ int main()
         }
     int kv_m[m][m];
     int i, j, k = 0, l;
-    while (k < 2)
-    {
         for (i = 0; i < m; i++)
             for (j = 0; j < m; j++)
             {
                 kv_m[i][j] = 0;
                 for (l = 0; l < m; l++)
                     kv_m[i][j] += (massiv[i][l] * massiv[l][j]);
-                k++;
             }
-    }
     for (i = 0; i<m; i++)
     {
         for (j = 0; j<m; j++)
