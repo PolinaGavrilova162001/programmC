@@ -15,7 +15,7 @@ int main()
     D = b*b - 4*a*c;
     printf("D = %lf", D);
     
-    if (D>0) {
+    if (D>0) {  //цикл =если
         x1=(-b+sqrt(D))/(2*a);
         x2=(-b-sqrt(D))/(2*a);
     printf("x1=%lf x2=%lf", x1, x2);
