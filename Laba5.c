@@ -6,49 +6,49 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-double **createMatrix(int n)
+double **create_m(int n)
 {
-   double **matrix = malloc(sizeof(double*) * n);
+   double **m = malloc(sizeof(double*) * n);
    for (int i = 0; i < n; ++i)
    {
-      matrix[i] = calloc(1, sizeof(double) * n); 
+      m[i] = calloc(1, sizeof(double) * n); 
    }
-   return matrix;
+   return m;
 }
 
-void destroyMatrix(double **matrix, int n)
+void destroy_m(double **m, int n)
 { 
    for (int i = 0; i < n; ++i)
    { 
-      free(matrix[i]); 
+      free(m[i]); 
    } 
-   free(matrix); 
+   free(m); 
 }
 
-double** matrixOperation(double **m1, double **m2, char op, int n)
+double** operation_m(double **m1, double **m2, char op, int n)
 {
    switch (op)
    {
       case '+':
-         double **result = createMatrix(n);
+         double **result = create_m(n);
          for (int i=0;i<n;++i)
             for (int j=0;j<n;++j)
                result[i][j] = m1[i][j] + m2[i][j];
                return result;
       case '-':
-         double **result2 = createMatrix(n);
+         double **result2 = create_m(n);
          for (int i=0; i<n; ++i)
             for (int j=0; j<n; ++j)
             result2[i][j] = m1[i][j] - m2[i][j];
             return result2;
       case '*':
-        double **result3 = createMatrix(n);
+        double **result3 = create_m(n);
         for (int i=0; i<n; ++i)
             for (int j=0; j<n; ++j)
             result3[i][j] = m1[i][j] * m2[i][j];
             return result3;
       case '/':
-        double **result4 = createMatrix(n);
+        double **result4 = create_m(n);
         for (int i=0; i<n; ++i)
             for (int j=0; j<n; ++j)
             result4[i][j] = m1[i][j]/m2[i][j];
@@ -64,7 +64,7 @@ int main(void)
 int n;
 printf("n=");
 scanf("%d", &n);
-double **m1 = createMatrix(n), **m2 = createMatrix(n);
+double **m1 = create_m(n), **m2 = create_m(n);
     for(int i = 0; i < n; ++i)
         for(int j = 0; j < n; ++j)
 scanf("%lf", &m1[i][j]);
@@ -74,7 +74,7 @@ scanf("%lf", &m2[i][j]);
 char op;
 printf("+, -, *, /: ");
 scanf(" %c", &op);
-double** result = matrixOperation(m1, m2, op, n);
+double** result = operation_m(m1, m2, op, n);
 for(int i = 0; i < n; ++i)
 {
 for(int j = 0; j < n; ++j)
@@ -83,8 +83,8 @@ printf("%.2lf", result[i][j]);
 }
 puts("");
 }
-destroyMatrix(m1, n);
-destroyMatrix(m2, n);
-destroyMatrix(result, n);
+destroy_m(m1, n);
+destroy_m(m2, n);
+destroy_m(result, n);
 return 0;
 }
