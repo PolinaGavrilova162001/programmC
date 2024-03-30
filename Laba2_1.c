@@ -6,24 +6,24 @@
 #include <stdio.h>
 int main()
 {
-        int m=3;
-    double massiv[m][m];
-    double gl_d, pob_d;
+        int m=3;  //введение переменной типа int для объявления размерности матрицы
+    double massiv[m][m];  //введение массива размерностью, заданной переменной m
+    double gl_d, pob_d;  //введение переменных для расчета значений главной и побочной диагоналей
     
     for (int i=0; i<m; i++)
             for (int j=0; j<m; j++)
         {
             printf("massiv[%d][%d] = ", i+1, j+1);
-            scanf("%lf", &massiv[i][j]);
+            scanf("%lf", &massiv[i][j]);  //запрос на ввод элементов матрицы пользователем
         }
-        printf("Matrix: ");
+        printf("Matrix: "); 
         for (int i = 0; i < m; i++)
     {
         for (int j = 0; j < m; j++)
         {
             printf("%f  ", massiv[i][j]);
         }
-        printf("\n");
+        printf("\n");  //вывод полученной матрицы
     }
     
     gl_d = 0;
@@ -31,12 +31,12 @@ int main()
  
     for (int i = 0; i < m; i++)
     {
-        gl_d += massiv[i][i];
-        pob_d += massiv[i][(m-1)-i];
+        gl_d += massiv[i][i]; 
+        pob_d += massiv[i][(m-1)-i];  //расчет главной и побочной диагоналей
     }
  
     printf("Glavnaya = %f\n", gl_d);
-    printf("Pobochnaya = %f\n", pob_d);
+    printf("Pobochnaya = %f\n", pob_d);  //вывод значений побочной диагонали и главной
     return 0;
 }
 
