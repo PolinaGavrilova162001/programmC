@@ -9,13 +9,13 @@
 #include <locale.h>
 
 typedef struct {
-    char name[50];
-    char surname[50];
-    int birth_year;
+    char name[50];  //строка имена
+    char surname[50];  //строка фамилии
+    int birth_year;  //переменная года рождения
 } human;
 
 int main() {
-    setlocale(LC_ALL, "Rus");
+    setlocale(LC_ALL, "Rus");  //руссификатор
     human arr1[4];
     human arr2[4];
 
