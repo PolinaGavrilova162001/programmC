@@ -6,26 +6,26 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-double **create_m(int n)  //размерность массива
+double **create_matrix(int n)  //функция для создания матрицы
 {
    double **m = malloc(sizeof(double*) * n);  //выделяет память под матрицу
    for (int i = 0; i < n; ++i)
    {
-      m[i] = calloc(1, sizeof(double) * n);  //выделяет 1 байт на размерность матрицы
+      m[i] = calloc(1, sizeof(double) * n);  //выделяет 1 байт на переменную для размерности матрицы
    }
    return m;
 }
 
-void destroy_m(double **m, int n)
+void destroy_matrix(double **m, int n)  //функция для удаления матрицы из динамической памяти
 { 
    for (int i = 0; i < n; ++i)
    { 
-      free(m[i]);  //очистка памяти
+      free(m[i]); 
    } 
    free(m); 
 }
 
-double** operation_m(double **m1, double **m2, char op, int n)
+double** operation_matrix(double **m1, double **m2, char op, int n)  //функция для выбора операции над матрицами
 {
    switch (op)  //цикл для выбора
    {
