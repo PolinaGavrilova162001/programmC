@@ -30,25 +30,25 @@ double** operation_matrix(double **m1, double **m2, char op, int n)   //функ
    switch (op)  //цикл для выбора
    {
       case '+':   //сложение матриц
-         double **result = create_m(n);
+         double **result = create_matrix(n);
          for (int i=0;i<n;++i)
             for (int j=0;j<n;++j)
                result[i][j] = m1[i][j] + m2[i][j];
                return result;
       case '-':   //вычитание матриц
-         double **result2 = create_m(n);
+         double **result2 = create_matrix(n);
          for (int i=0; i<n; ++i)
             for (int j=0; j<n; ++j)
             result2[i][j] = m1[i][j] - m2[i][j];
             return result2;
       case '*':   //умножение матриц
-        double **result3 = create_m(n);
+        double **result3 = create_matrix(n);
         for (int i=0; i<n; ++i)
             for (int j=0; j<n; ++j)
             result3[i][j] = m1[i][j] * m2[i][j];
             return result3;
       case '/':   //деление матриц
-        double **result4 = create_m(n);
+        double **result4 = create_matrix(n);
         for (int i=0; i<n; ++i)
             for (int j=0; j<n; ++j)
             result4[i][j] = m1[i][j]/m2[i][j];
@@ -62,9 +62,9 @@ double** operation_matrix(double **m1, double **m2, char op, int n)   //функ
 int main(void)
 {
 int n;
-printf("n=");   //запрос на ввод пользователя размерности матрицы
+printf("Vvedite razmernost matrix: ");   //запрос на ввод пользователя размерности матрицы
 scanf("%d", &n);
-double **m1 = create_m(n), **m2 = create_m(n);   //создание матриц
+double **m1 = create_matrix(n), **m2 = create_matrix(n);   //создание матриц
     for(int i = 0; i < n; ++i)
         for(int j = 0; j < n; ++j)
 scanf("%lf", &m1[i][j]);   //заполнение элементами первой матрицы
@@ -74,7 +74,7 @@ scanf("%lf", &m2[i][j]);   //заполнение элементами втор�
 char op;
 printf("+, -, *, /: ");   //выбор операции над матрицами
 scanf(" %c", &op);   //ввод операции
-double** result = operation_m(m1, m2, op, n);   //выполнение функции для проведения операции над матрицами
+double** result = operation_matrix(m1, m2, op, n);   //выполнение функции для проведения операции над матрицами
 for(int i = 0; i < n; ++i)
 {
 for(int j = 0; j < n; ++j)
@@ -83,8 +83,8 @@ printf("%.2lf", result[i][j]);
 }
 puts("");
 }
-destroy_m(m1, n);   //очистка динамической памяти
-destroy_m(m2, n);
-destroy_m(result, n);
+destroy_matrix(m1, n);   //очистка динамической памяти
+destroy_matrix(m2, n);
+destroy_matrix(result, n);
 return 0;
 }
