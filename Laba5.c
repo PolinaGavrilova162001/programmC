@@ -16,6 +16,13 @@ double **create_matrix(int n)   //функция для создания мат�
    return m;
 }
 
+double **fill_matrix(double **m, int n)
+{
+    for (int i=0; i<n; ++i)
+        for (int j=0; j<n; ++j)
+    scanf("%lf", &m[i][j]);
+}
+
 void destroy_matrix(double **m, int n)   //функция для удаления матрицы из динамической памяти
 { 
    for (int i = 0; i < n; ++i)
@@ -64,13 +71,9 @@ int main(void)
 int n;
 printf("Vvedite razmernost matrix: ");   //запрос на ввод пользователя размерности матрицы
 scanf("%d", &n);
-double **m1 = create_matrix(n), **m2 = create_matrix(n);   //создание матриц
-    for(int i = 0; i < n; ++i)
-        for(int j = 0; j < n; ++j)
-scanf("%lf", &m1[i][j]);   //заполнение элементами первой матрицы
-    for(int i = 0; i < n; ++i)
-        for(int j = 0; j < n; ++j)
-scanf("%lf", &m2[i][j]);   //заполнение элементами второй матрицы
+double **m1 = create_matrix(n), **m2 = create_matrix(n);
+fill_matrix(m1, n);
+fill_matrix(m2, n);
 char op;
 printf("+, -, *, /: ");   //выбор операции над матрицами
 scanf(" %c", &op);   //ввод операции
