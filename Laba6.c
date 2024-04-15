@@ -11,8 +11,8 @@ ________________________________________________________________________________
 
 int main() {
     FILE *in_file, *out_file;
-    char first_name[20], middle_name[20], last_name[20];  //вводим строки 
-    int year;  //вводим переменную
+    char first_name[20], middle_name[20], last_name[20]; 
+    int year; 
 
     in_file = fopen("input.txt", "r");  //открывает файл для чтения
     out_file = fopen("output.txt", "w");  //открывает файл и создает пустой файл для записи
