@@ -3,48 +3,52 @@
     
 struct humen
 {
-    char name[20];
-    char surname[20];
-    int year, i, j;
+    char name[50];  //строка имена
+    char surname[50];  //строка фамилии
+    int year, i, j;  //переменная года рождения
 };
 
 int main()
 {
-    int N=4;
-    struct humen h1[N];
-    struct humen h2[N];
+    int N = 4;
+    struct humen arr1[N];
+    struct humen arr2[N];
 
+    // Ввод данных для первого массива
     printf("Введите данные для 4 человек:\n");
     for(int i=0; i<N; i++)
     {
         printf("Человек %d:\n", i+1);
         printf("Имя: ");
-        scanf("%s", h1[i].name);
+        scanf("%s", arr1[i].name);
         printf("Фамилия: ");
-        scanf("%s", h1[i].surname);
+        scanf("%s", arr1[i].surname);
         printf("Год рождения: ");
-        scanf("%d", &h1[i].year);
+        scanf("%d", &arr1[i].year);
     }
 
-    memcpy(h2, h1, sizeof(h1));
+    // Копирование первого массива во второй
+    memcpy(arr2, arr1, sizeof(arr1));
 
-    for(int i=0; i<N-1; i++)
+    // Сортировка массива по годам рождения
+    for(int i=0; i<N; i++)
     {
-        for(int j=i+1; j<N-i-1; j++)
+        for(int j=i+1; j<N; j++)
         {
-            if(h2[j].year > h2[j+1].year)
+            if(arr2[i].year > arr2[j].year)
             {
-                struct humen temp = h2[j+1];
-                h2[j+1] = h2[j];
-                h2[j] = temp;
+                struct humen temp = arr2[i];
+                arr2[i] = arr2[j];
+                arr2[j] = temp;
             }
         }
     }
 
+    // Вывод отсортированного массива
     printf("Упорядоченный по годам рождения массив людей:\n");
     for(int i=0; i<N; i++)
     {
-        printf("Человек %d: %s %s, %d год\n", i+1, h2[i].name, h2[i].surname, h2[i].year);
+        printf("Человек %d: %s %s, %d год\n", i+1, arr2[i].name, arr2[i].surname, arr2[i].year);
     }
 
     return 0;
