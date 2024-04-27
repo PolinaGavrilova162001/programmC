@@ -4,59 +4,69 @@
 А также реализовать возможность задавать несколько полей для упорядочивания.
 ___________________________________________________________________________________________________
 
+//вводим библиотеки
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <locale.h>
 
-struct Person {
-    char name[50];
-    char surname[50];
-    int birth_year;
-    char gender;
-    float height;
+//модуль для ввода данных о человеке
+struct person {
+    char name[50];  //строка имя человека
+    char surname[50];   //строка фамилия человека
+    int year;   //переменная год рождения человека
+    char gender;    //строка пол человека
+    float height;   //переменная рост человека
 };
 
+
 int comparator(const void *a, const void *b) {
-    struct Person *personA = (struct Person *)a;
-    struct Person *personB = (struct Person *)b;
-    return personA->birth_year == personB->birth_year ? 
-           personA->gender == personB->gender ? 
-           strcmp(personA->name, personB->name) : personA->gender - personB->gender : 
-           personA->birth_year - personB->birth_year;
+    struct person *personA = (struct person *)a;
+    struct person *personB = (struct person *)b;
+return personA->year == personB->year ?
+    personA->gender == personB->gender ?
+    strcmp(personA->name, personB->name) : personA->gender - personB->gender :
+    personA->year - personB->year;
 }
 
+//ввод количества людей
 int main() {
     int n, i, j;
-    printf("n= ");
+    printf("Количество человек: ");
     scanf("%d", &n);
     
-    struct Person* people = (struct Person*)malloc(n * sizeof(struct Person));
+//копирует переменные данных о человеке заданное количество раз
+    struct person* people = (struct person*)malloc(n * sizeof(struct person));
     
-    for(i=0; i<n; i++) {
-        printf("Name, surname, god rojdenia, pol (m/j), и rost (m) cheloveka %d:\n", i+1);
-        scanf("%s %s %d %c %f", people[i].name, people[i].surname, &people[i].birth_year, &people[i].gender, &people[i].height);
-    }
-
-    int num_sort_fields;
-    printf("Kolichestvo polei dlya sortirovki (max 4): ");
-    scanf("%d", &num_sort_fields);
-    
-    int sort_field_indices[4];
-    for(i=0; i<num_sort_fields; i++) {
-        printf("Pole po kotoromy bydet otsortirovka %d (0: name, 1: surname, 2: god rojdenia, 3: pol, 4: rost): ", i+1);
-        scanf("%d", &sort_field_indices[i]);
+//ввод данных о человеке (имя, фамилия, год рождения, рост)
+    for (int i=0; i<n; i++) {
+        printf("Имя, фамилия, год рождения, пол и рост человека: %d:\n", i+1);
+        scanf("%s %s %d %c %f", people[i].name, people[i].surname, &people[i].year, &people[i].gender, &people[i].height);
     }
     
-    qsort(people, n, sizeof(struct Person), comparator);
+//задается количество полей по которым будет происходить сортировка
+    int num_sort;   //переменная для значения количества полей для сортировки
+    printf("Количество полей для сортировки (максимум 4): ");   //вывод надписи чтобы пользователь ввел значение переменной
+    scanf("%d", &num_sort); //введенное значение передается переменной
     
-    printf("\nGotovii spisok:\n");
-    for(i=0; i<n; i++) {
-        printf("%s %s, %d, %c, %.2f\n", people[i].name, people[i].surname, people[i].birth_year, people[i].gender, people[i].height);
+//выбор полей по которым будет происходить сортировка
+     int sort_field_indices[4]; //ввод одномерного массива для значения полей по которым будет происходить сортировка
+    for(i=0; i<num_sort; i++) { //цикл для выбора полей для сортировки пока количество полей для сортировки меньше введенных полей
+        printf("Поле по которому будет отсортировка %d (0: имя, 1: фамилия, 2: год рождения, 3: пол, 4: рост): ", i+1);
+        scanf("%d", &sort_field_indices[i]);    //введенные значения передаются переменной
     }
     
+//выполняет сортировку элементов массива people, заданного количества n
+    qsort(people, n, sizeof(struct person), comparator);
+    
+//вывод готового отсортированного списка
+    printf("\nГотовый список\n");   //вывод надписи
+    for(i=0; i<n; i++) {    //цикл для вывода готового отсортированного списка
+        printf("%s %s, %d, %c, %.2f\n", people[i].name, people[i].surname, people[i].year, people[i].gender, people[i].height);
+    }
+    
+//очистка динамической памяти
     free(people);
     
     return 0;
 }
-
