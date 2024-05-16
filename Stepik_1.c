@@ -1,8 +1,9 @@
 Напишите программу, которая печатает строку "Hello, World!" без кавычек.
 
-#include <stdio.h>
+#include <stdio.h>    //подключаем основную библиотеку
 
-int main() {
-    printf("Hello, World!");
-    return 0;
+int main()    //основная функция кода
+{
+    printf("Hello, World!");    //вывод текста
+    return 0;    //конец функции main
 }
