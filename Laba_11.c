@@ -1,7 +1,7 @@
-#include <stdio.h>
+#include <stdio.h>    //подключаем библиотеки
 #include <stdarg.h>
 
-int sum(int num_args, ...)
+int sum(int num_args, ...)    //вводим функцию для расчета суммы
 {
     va_list args;
     va_start(args, num_args);
