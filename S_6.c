@@ -4,11 +4,12 @@ S.Holmes:
 51 grad 31'25.48" N
 0 grad  9'29.93" W
 
-#include <stdio.h>
+#include <stdio.h>    //подключаем библиотеку
 
-int main(){
-    printf("S.Holmes:\n");
+int main()    //вводим функцию
+{
+    printf("S.Holmes:\n");    //выводим строку и переходим на следующую строку
     printf("51grad 31'25.48\" N\n");
     printf("0 grad  9'29.93\" W\n");
-    return 0;
+    return 0;    //конец функции
 }
