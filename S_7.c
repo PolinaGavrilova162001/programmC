@@ -3,9 +3,10 @@
 "I'll be back!"
         (c)Terminator
 
-#include <stdio.h>
+#include <stdio.h>        //подключаем основную библиотеку
 
-int main(){
-    printf("\"I'll be back!\"\n\t(c)Terminator");
-    return 0;
+int main()        //основная функция кода
+{
+    printf("\"I'll be back!\"\n\t(c)Terminator");        //вывод строки
+    return 0;        //конец функции
 }
