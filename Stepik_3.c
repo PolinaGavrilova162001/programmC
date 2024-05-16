@@ -1,16 +1,16 @@
 Напишите программу, которая считает сумму всех чисел из stdin.
 
-#include <stdio.h>
-int main()
+#include <stdio.h>    //подключаем основную библиотеку
+int main()    //основная функция кода
 {
-int sum = 0;
-int number;
-while (scanf("%d", &number) == 1)
+int sum = 0;    //вводим переменную sum и даем ей значение 0
+int number;    //вводим переменную number
+while (scanf("%d", &number) == 1)    //цикл значения заносимые в переменную number приравнены к 1
 {
-    sum += number;
+    sum += number;    //считаем в переменную sum сумму элементов из переменной number
 }
 
-printf("%d\n", sum);
+printf("%d\n", sum);    //вывод значения переменной sum
 
-return 0;
+return 0;    //конец функции main
 }
