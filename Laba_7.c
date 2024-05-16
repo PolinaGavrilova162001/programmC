@@ -1,17 +1,17 @@
 #include <stdio.h>
-#include <string.h>
+#include <string.h>    //подключаем библиотеки
     
-struct humen
+struct humen    //вводим структуру humen
 {
     char name[50];  //строка имена
     char surname[50];  //строка фамилии
     int year, i, j;  //переменная года рождения
 };
 
-int main()
+int main()    //вводим функцию main
 {
-    int N = 4;
-    struct humen arr1[N];
+    int N = 4;    //вводим переменную N
+    struct humen arr1[N];    //вводим размер структуры humen arr1 и arr2
     struct humen arr2[N];
 
     // Ввод данных для первого массива
