@@ -1,19 +1,19 @@
 Создать в отдельном модуле функции с переменным количеством аргументов, которая вычисляет их сумму, максимум, минимум, среднее арифметическое.
 ____________________
-#include <stdio.h>
-#include "functions.h"
+#include <stdio.h>    //подключаем основную библиотеку
+#include "functions.h"    //подключаем свою библиотеку
 
-int main()
+int main()    //основная функция кода
 {
-    int sum = calculate_sum(3, 5, 10, 15);
-    int max = calculate_max(4, 20, 30, 15, 25);
-    int min = calculate_min(5, 10, 100, 30, 50, 20);
-    float average = calculate_average(4, 5, 10, 15, 20);
+    int sum = calculate_sum(3, 5, 10, 15);    //функция для подсчета суммы
+    int max = calculate_max(4, 20, 30, 15, 25);    //функция для подсчета максимума
+    int min = calculate_min(5, 10, 100, 30, 50, 20);    //функция для подсчета минимума
+    float average = calculate_average(4, 5, 10, 15, 20);    //функция для подсчета среднего арифметического
     
-    printf("Sum: %d\n", sum);
-    printf("Max: %d\n", max);
-    printf("Min: %d\n", min);
-    printf("Average: %.2f\n", average);
+    printf("Sum: %d\n", sum);    //вывод значения функции суммы
+    printf("Max: %d\n", max);    //вывод значения функции максимума
+    printf("Min: %d\n", min);    //вывод значения функции минимума
+    printf("Average: %.2f\n", average);    //вывод значения функции среднего арифметического
     
-    return 0;
+    return 0;    //конец функции
 }
