@@ -1,31 +1,31 @@
 Написать программу вычисления максимального числа из введенных пользователем в виде одной строки.
 Использовать для этого макрос (без функции), на вход которому подается массив чисел и их количество.
 ____________________________________________________________
-#include <stdio.h>
+#include <stdio.h>    //подключаем основную библиотеку
 
-#define MAX(a, b) ((a) > (b) ? (a) : (b))
+#define MAX(a, b) ((a) > (b) ? (a) : (b))    //макрос для вычисления максимального числа
 
-int main()
+int main()    //основная функция
 {
-    int numbers[100];
-    int count;
+    int numbers[100];    //переменная numbers
+    int count;    //переменная count
     
-    printf("Vvedite kolichestvo chisel: ");
-    scanf("%d", &count);
+    printf("Vvedite kolichestvo chisel: ");    //вывод текста-запроса для пользователя, чтобы он ввел количество чисел
+    scanf("%d", &count);    //заносит значение в переменную count
     
-    printf("Vvedite chisla cherez probel: ");
+    printf("Vvedite chisla cherez probel: ");    //вывод текста-запроса чтобы пользователь ввел числа через пробел
     for (int i=0; i < count; i++)
     {
-        scanf("%d", &numbers[i]);
+        scanf("%d", &numbers[i]);    //цикл, при котором в переменную (одномерный массив) заносятся числа
     }
     
-    int max = numbers[0];
+    int max = numbers[0];    //в переменную max заносится переменная (одномерный массив) numbers
     for (int i=1; i < count; i++)
     {
-        max = MAX(max, numbers[i]);
+        max = MAX(max, numbers[i]);    //цикл, при котором перебиратся все числа в переменной numbers и находится максимальное число
     }
     
-    printf("Maximalnoe chislo: %d\n", max);
+    printf("Maximalnoe chislo: %d\n", max);    //вывод максимального числа
     
-    return 0;
+    return 0;    //конец функции
 }
