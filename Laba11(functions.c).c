@@ -1,6 +1,6 @@
-#include <stdarg.h>
+#include <stdarg.h>    //подключаем библиотеку
 
-int calculate_sum(int num_args, ...)
+int calculate_sum(int num_args, ...)    //функция суммы
 {
     va_list args;
     va_start(args, num_args);
@@ -17,7 +17,7 @@ int calculate_sum(int num_args, ...)
     return sum;
 }
 
-int calculate_max(int num_args, ...)
+int calculate_max(int num_args, ...)    //функция максимума
 {
     va_list args;
     va_start(args, num_args);
@@ -38,7 +38,7 @@ int calculate_max(int num_args, ...)
     return max;
 }
 
-int calculate_min(int num_args, ...)
+int calculate_min(int num_args, ...)    //функция минимума
 {
     va_list args;
     va_start(args, num_args);
@@ -59,7 +59,7 @@ int calculate_min(int num_args, ...)
     return min;
 }
 
-float calculate_average(int num_args, ...)
+float calculate_average(int num_args, ...)    //функция среднего арифметического
 {
     va_list args;
     va_start(args, num_args);
