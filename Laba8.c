@@ -4,14 +4,15 @@
 А также реализовать возможность задавать несколько полей для упорядочивания.
 ___________________________________________________________________________________________________
 
-//вводим библиотеки
+//подключаем библиотеки
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <locale.h>
 
 //модуль для ввода данных о человеке
-struct person {
+struct person
+{
     char name[50];  //строка имя человека
     char surname[50];   //строка фамилия человека
     int year;   //переменная год рождения человека
@@ -20,7 +21,8 @@ struct person {
 };
 
 
-int comparator(const void *a, const void *b) {
+int comparator(const void *a, const void *b)
+{
     struct person *personA = (struct person *)a;
     struct person *personB = (struct person *)b;
 return personA->year == personB->year ?
@@ -30,7 +32,8 @@ return personA->year == personB->year ?
 }
 
 //ввод количества людей
-int main() {
+int main()
+{
     int n, i, j;
     printf("Количество человек: ");
     scanf("%d", &n);
@@ -39,7 +42,8 @@ int main() {
     struct person* people = (struct person*)malloc(n * sizeof(struct person));
     
 //ввод данных о человеке (имя, фамилия, год рождения, рост)
-    for (int i=0; i<n; i++) {
+    for (int i=0; i<n; i++)
+    {
         printf("Имя, фамилия, год рождения, пол и рост человека: %d:\n", i+1);
         scanf("%s %s %d %c %f", people[i].name, people[i].surname, &people[i].year, &people[i].gender, &people[i].height);
     }
@@ -51,7 +55,8 @@ int main() {
     
 //выбор полей по которым будет происходить сортировка
      int sort_field_indices[4]; //ввод одномерного массива для значения полей по которым будет происходить сортировка
-    for(i=0; i<num_sort; i++) { //цикл для выбора полей для сортировки пока количество полей для сортировки меньше введенных полей
+    for(i=0; i<num_sort; i++)
+    { //цикл для выбора полей для сортировки пока количество полей для сортировки меньше введенных полей
         printf("Поле по которому будет отсортировка %d (0: имя, 1: фамилия, 2: год рождения, 3: пол, 4: рост): ", i+1);
         scanf("%d", &sort_field_indices[i]);    //введенные значения передаются переменной
     }
@@ -61,7 +66,8 @@ int main() {
     
 //вывод готового отсортированного списка
     printf("\nГотовый список\n");   //вывод надписи
-    for(i=0; i<n; i++) {    //цикл для вывода готового отсортированного списка
+    for(i=0; i<n; i++)
+    {    //цикл для вывода готового отсортированного списка
         printf("%s %s, %d, %c, %.2f\n", people[i].name, people[i].surname, people[i].year, people[i].gender, people[i].height);
     }
     
