@@ -5,12 +5,12 @@
 	- now – текущую дату.
 _________________
 
-#include <stdio.h>
-#include <time.h>
+#include <stdio.h>	//подключаем библиотеку основную
+#include <time.h>	//подключаем библиотеку
 
-void print_day_of_week(int year, int month, int day)
+void print_day_of_week(int year, int month, int day)	//функция принимает год, месяц и день
 {
-    struct tm time_struct = {0};
+    struct tm time_struct = {0};	//используем структуру tm чтобы определить день недели для указанной даты и вывести его на экран
     time_struct.tm_year = year - 1900;
     time_struct.tm_mon = month - 1;
     time_struct.tm_mday = day;
@@ -42,7 +42,7 @@ void print_day_of_week(int year, int month, int day)
     }
 }
 
-void print_month_calendar(int year, int month)
+void print_month_calendar(int year, int month)	//принимает год и месяц. Выводит календарь месяца для указанного года и месяца, каждое число представляет день месяца
 {
     struct tm time_struct = {0};
     time_struct.tm_year = year - 1900;
@@ -88,7 +88,7 @@ void print_month_calendar(int year, int month)
     }
 }
 
-void print_year_calendar(int year)
+void print_year_calendar(int year)	//принимает год и выводит на экран календарь для каждого месяца данного года
 {
     for (int month = 1; month <= 12; month++)
     {
@@ -97,7 +97,7 @@ void print_year_calendar(int year)
     }
 }
 
-void print_current_date()
+void print_current_date()	//получает информацию о текущей дате и времени и выводит ее в формате yyyy-mm-dd
 {
     time_t current_time;
     struct tm* time_info;
@@ -106,7 +106,7 @@ void print_current_date()
     printf("Current date: %d-%02d-%02d\n", time_info->tm_year + 1900, time_info->tm_mon + 1, time_info->tm_mday);
 }
 
-int main()
+int main()	//происходит ввод строки от пользователя, которая обрабатывается с помощью sscanf для определения формата введенных данных и вызова соотвутствующих функций. Если ввод не соответствует ни одному из ожидаемых форматов, выводится ссобщение об ошибке.
 {
     int year, month, day;
     char input[50];
@@ -135,5 +135,5 @@ int main()
         printf("Invalid Input. Expected formats: 'yyyy.mm.dd', 'yyyy.mm', 'yyyy', 'now'\n");
     }
     
-    return 0;
+    return 0;	//конец
 }
