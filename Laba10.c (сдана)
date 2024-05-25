@@ -1,0 +1,40 @@
+#include <stdio.h>
+
+#define MAX(a, b) ((a) > (b) ? (a) : (b))
+#define SR_ARIF(count, numbers) \
+({\
+    int sum = 0;\
+    for (int i=0; i<count; i++)\
+    {\
+        sum+=numbers[i];\
+    }\
+    int average=sum/count;\
+    average;\
+})
+
+int main()
+{
+    int numbers[100];
+    int count;
+    
+    printf("Vvedite kolichestvo chisel: ");
+    scanf("%d", &count);
+    
+    printf("Vvedite chisla cherez probel: ");
+    for (int i=0; i < count; i++)
+    {
+        scanf("%d", &numbers[i]);
+    }
+    
+    int max = numbers[0];
+    for (int i=1; i < count; i++)
+    {
+        max = MAX(max, numbers[i]);
+    }
+    
+    printf("Maximalnoe chislo: %d\n", max);
+    
+    printf("Srednee arifmeticheskoe: %d\n", SR_ARIF(count, numbers));
+    
+    return 0;
+}
