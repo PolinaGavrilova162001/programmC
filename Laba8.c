@@ -4,13 +4,13 @@
 А также реализовать возможность задавать несколько полей для упорядочивания.
 ___________________________________________________________________________________________________
 
-//подключаем библиотеки
+//подключаем необходимые библиотеки
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <locale.h>
 
-//модуль для ввода данных о человеке
+//структура person содержит данные о человеке
 struct person
 {
     char name[50];  //строка имя человека
@@ -21,7 +21,7 @@ struct person
 };
 
 
-int comparator(const void *a, const void *b)
+int comparator(const void *a, const void *b)    //функция для сравнения элементов структуры person при сортировке
 {
     struct person *personA = (struct person *)a;
     struct person *personB = (struct person *)b;
@@ -31,15 +31,14 @@ return personA->year == personB->year ?
     personA->year - personB->year;
 }
 
-//ввод количества людей
 int main()
 {
     int n, i, j;
     printf("Количество человек: ");
-    scanf("%d", &n);
+    scanf("%d", &n);    //ввод количества людей
     
 //копирует переменные данных о человеке заданное количество раз
-    struct person* people = (struct person*)malloc(n * sizeof(struct person));
+    struct person* people = (struct person*)malloc(n * sizeof(struct person));    //выделение памяти под массив людей
     
 //ввод данных о человеке (имя, фамилия, год рождения, рост)
     for (int i=0; i<n; i++)
