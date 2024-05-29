@@ -1,16 +1,17 @@
 Написать программу подсчитывающая количество битов, выставленных в единицу у числа типа long и double. Сами значения чисел вводятся с клавиатуры.    
 
+//подключаем библиотеку
 #include <stdio.h>
 #include <stdint.h>
 
 // Функция подсчитывающая количество битов, выставленных в единицу у числа типа long
 uint64_t count_bits_long(long num) {
-    uint64_t count = 0;
-    while (num) {
-        num &= (num - 1);
-        count++;
+    uint64_t count = 0;    //вводим переменную
+    while (num) {    
+        num &= (num - 1);    //сбрасывает крайний правый установленный бит в числе num
+        count++;    //увеличиваем переменную (установленные биты)
     }
-    return count;
+    return count;    //возвращаем значение переменной
 }
 
 // Функция подсчитывающая количество битов, выставленных в единицу у числа типа double
@@ -27,20 +28,20 @@ uint64_t count_bits_double(double num) {
 }
 
 int main() {
-    long num_long;
-    double num_double;
+    long num_long;    //вводим переменную
+    double num_double;    //вводим переменную
 
-    printf("Введите число типа long: ");
-    scanf("%ld", &num_long);
+    printf("Введите число типа long: ");    //выводим текст-запрос
+    scanf("%ld", &num_long);    //заносим значение в переменную
 
-    printf("Введите число типа double: ");
-    scanf("%lf", &num_double);
+    printf("Введите число типа double: ");    //выводим текст-запрос
+    scanf("%lf", &num_double);    //заносим значение в переменную
 
     uint64_t bits_long = count_bits_long(num_long);
     uint64_t bits_double = count_bits_double(num_double);
 
-    printf("Количество битов, выставленных в единицу для числа типа long: %llu\n", bits_long);
-    printf("Количество битов, выставленных в единицу для числа типа double: %llu\n", bits_double);
+    printf("Количество битов, выставленных в единицу для числа типа long: %llu\n", bits_long);    //выводим переменную
+    printf("Количество битов, выставленных в единицу для числа типа double: %llu\n", bits_double);    //выводим переменную
 
-    return 0;
+    return 0;    //конец
 }
