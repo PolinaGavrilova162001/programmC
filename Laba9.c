@@ -56,14 +56,14 @@ int main()    //основная функция
     printf("Vvedite arifmeticheskoe vurajenie: ");    //выводим текст-запрос
     fgets(expression, sizeof(expression), stdin);    //считывает символы из потока и сохраняет их в виде строки в параметр expression до тех пор пока не наступит конец строки или пока не будет достигнут конец файла
     
-    if (expression[strlen(expression) - 1] == '\n')
+    if (expression[strlen(expression) - 1] == '\n')    //проверяем завершается ли строка символом новой строки
     {
-        expression[strlen(expression) - 1] = '\0';
+        expression[strlen(expression) - 1] = '\0';    //если да, то заменяем этот символ нулевым
     }
     
-    double result = calculate(expression);
+    double result = calculate(expression);    //объявляем переменную и присваиваем ей значение, которое возвращается из функции
     
-    printf("Rezultat: %.2f/n", result);
+    printf("Rezultat: %.2f/n", result);    //выводим результат
     
-    return 0;
+    return 0;    //конец
 }
