@@ -3,28 +3,39 @@
 
 #include <stdio.h>
 
-void printDigitsForward(int n) {
-    if (n == 0) return;
-    printDigitsForward(n / 10);
-    printf("%d ", n % 10);
+//функция для вывода рекурсивного
+void printDigits(int n)
+{
+    if (n >= 10)    //если число больше или равно 10
+    {
+        printDigits(n / 10); //функция которая выводит рекурсивно цифры по одной (аргумент n/10 позволяет избавиться от младшей цифры и передать на следующий уровень старшие цифры
+    }
+    printf("%d ", n % 10);    //иначе выводим цифры на экран в обратном порядке
 }
 
-void printDigitsReverse(int n) {
-    if (n == 0) return;
-    printDigitsReverse(n / 10);
-    printf("%d ", n % 10);
+//функция для вывода рекурсивного в обратном порядке
+void printDigitsReverse(int n)
+{
+    printf("%d ", n % 10); //выводим цифры на экран в обратном порядке
+    if (n >= 10)
+    {
+        printDigitsReverse(n / 10); // Рекурсивный вызов для старших разрядов
+    }
 }
 
-int main() {
-    int n;
-    printf("Введите натуральное число: ");
-    scanf("%d", &n);
+int main()
+{
+    int n;    //вводим переменную
+    printf("Введите натуральное число: ");    //выводим текст-запрос
+    scanf("%d", &n);    //заносим значение в переменную
 
-    printf("Цифры числа %d в обычном порядке:\n", n);
-    printDigitsForward(n);
+    printf("Цифры числа в обычном порядке: ");    //выводим текст
+    printDigits(n);    //выводим цифры числа
+    printf("\n");
 
-    printf("\nЦифры числа %d в обратном порядке:\n", n);
-    printDigitsReverse(n);
+    printf("Цифры числа в обратном порядке: ");    //выводим текст
+    printDigitsReverse(n);    //выводим цифры числа в обратном порядке
+    printf("\n");
 
-    return 0;
+    return 0;    //конец
 }
