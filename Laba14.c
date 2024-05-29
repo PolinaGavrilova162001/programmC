@@ -1,37 +1,38 @@
 Написать программу с использованием нелокального перехода setjmp/longjmp, которая вычисляет сумму чисел Фибоначчи (начиная с1, 1,...). Использовать рекурсивную функции для вычисления суммы, в качестве механизма возврата из вложенных вызовов использовать нелокальный переход.
 
-#include <stdio.h>
-#include <setjmp.h>
+#include <stdio.h>    //подключаем библиотеку стандартную
+#include <setjmp.h>    //подключаем библиотеку для работы с метками для возврата из глубокого вложенного вызова функций
 
-jmp_buf buf;
+jmp_buf buf;    //объявляем метку (буфер) для сохранения состояния программы
 
+//функция рекурсивно вычисляет сумму первых n чисел Фибоначчи
 long long sum_fibonacci(long long n, long long a, long long b) {
-    if (n == 0) {
-        return 0;
+    if (n == 0) {    //если n=0
+        return 0;    //возвращает 0
     }
-    if (n == 1) {
-        return a;
+    if (n == 1) {    //если n=1
+        return a;    //возвращает начальное значение числа Фибоначчи
     }
-    long long result = a + b;
-    if (n - 2 >= 0) {
-        longjmp(buf, 0);
-        return sum_fibonacci(n - 1, b, result) + result;
+    long long result = a + b;    //вычисляем сумму и результат сохраняем в переменную
+    if (n - 2 >= 0) {    //если число натуральное больше или равным 2
+        longjmp(buf, 0);    //переносим выполнение программы в другую точку, обозначенную buf
+        return sum_fibonacci(n - 1, b, result) + result;    //результат рекурсивного вызова и результат вычисления суммы складываются
     }
-    return result;
+    return result;    //возвращает переменную
 }
 
 int main() {
-    long long n;
-    printf("Enter a positive integer: ");
-    scanf("%lld", &n);
+    long long n;    //вводим переменную
+    printf("Enter a positive integer: ");    //запрашиваем у пользователя ввести положительное целое число
+    scanf("%lld", &n);    //и заносим его в переменную n
 
-    if (setjmp(buf) == 0) {
-        printf("The sum of the first %lld Fibonacci numbers is: %lld\n", n, sum_fibonacci(n, 1, 1));
-    } else {
-        printf("Please enter a positive integer: ");
-        scanf("%lld", &n);
-        printf("The sum of the first %lld Fibonacci numbers is: %lld\n", n, sum_fibonacci(n, 1, 1));
+    if (setjmp(buf) == 0) {    //если возвращает 0
+        printf("The sum of the first %lld Fibonacci numbers is: %lld\n", n, sum_fibonacci(n, 1, 1));    //то программа выводит сообщение о сумме первых n чисел на основе функции, принимая аргументы n, 1 и 1
+    } else {    //либо    
+        printf("Please enter a positive integer: ");    //запрашиваем у пользователя ввести положительное целое число
+        scanf("%lld", &n);    //заносим его в переменную
+        printf("The sum of the first %lld Fibonacci numbers is: %lld\n", n, sum_fibonacci(n, 1, 1));    //выводим снова сообщение о сумме первых n чисел на основе введенного значения n и функции 
     }
 
-    return 0;
+    return 0;    //конец
 }
