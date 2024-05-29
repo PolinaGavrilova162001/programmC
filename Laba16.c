@@ -22,9 +22,9 @@ uint64_t count_bits_double(double num) {
     // Подсчитываем количество битов для целой части
     count += count_bits_long(int_part);
     // Преобразуем дробную часть в целое число и добавляем количество битов для нее
-    uint64_t frac_part = *(uint64_t*)&num;
-    count += count_bits_long(frac_part);
-    return count;
+    uint64_t frac_part = *(uint64_t*)&num;    //преобразуем num в uint64_t
+    count += count_bits_long(frac_part);    //считаем количество установленных битов в числе frac_part
+    return count;    //возвращаем переменную
 }
 
 int main() {
@@ -37,8 +37,8 @@ int main() {
     printf("Введите число типа double: ");    //выводим текст-запрос
     scanf("%lf", &num_double);    //заносим значение в переменную
 
-    uint64_t bits_long = count_bits_long(num_long);
-    uint64_t bits_double = count_bits_double(num_double);
+    uint64_t bits_long = count_bits_long(num_long);    //подсчитываем число установленных бит в переменной num_long
+    uint64_t bits_double = count_bits_double(num_double);    //подсчитываем число установленных бит в переменной num_double
 
     printf("Количество битов, выставленных в единицу для числа типа long: %llu\n", bits_long);    //выводим переменную
     printf("Количество битов, выставленных в единицу для числа типа double: %llu\n", bits_double);    //выводим переменную
