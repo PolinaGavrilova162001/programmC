@@ -110,7 +110,7 @@ void print_current_date()
     printf("Current date: %d-%02d-%02d\n", time_info->tm_year + 1900, time_info->tm_mon + 1, time_info->tm_mday);	//выводим текущую дату
 }
 
-int main()	
+int main() {	
     int year, month, day;	//вводим переменные год, месяц, день
     char input[50];	//вводим строку input, куда мы будем записывать данные
 
