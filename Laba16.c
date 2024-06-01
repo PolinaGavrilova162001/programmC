@@ -28,8 +28,8 @@ uint64_t count_bits_double(double num) {
 }
 
 int main() {
-    long num_long;    //вводим переменную
-    double num_double;    //вводим переменную
+    long num_long;    //вводим переменную для числа типа long
+    double num_double;    //вводим переменную для числа типа double
 
     printf("Введите число типа long: ");    //выводим текст-запрос
     scanf("%ld", &num_long);    //заносим значение в переменную
