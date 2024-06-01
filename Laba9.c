@@ -5,7 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 
-double unary_op(char op, double operand)    //функция унарный вариант
+double unary_op(char op, double operand)    //функция унарный операция
 {
     if (op == '-')    //если операция имеет -
     {
