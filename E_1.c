@@ -2,12 +2,10 @@
 #include <stdlib.h>
 #include <time.h>
 
-// Функция для генерации случайного числа в заданном диапазоне
 int random_number(int min, int max) {
     return rand() % (max - min + 1) + min;
 }
 
-// Функция для заполнения матрицы случайными числами
 void fill_matrix(int **matrix, int rows, int cols) {
     for (int i = 0; i < rows; i++) {
         for (int j = 0; j < cols; j++) {
@@ -16,7 +14,6 @@ void fill_matrix(int **matrix, int rows, int cols) {
     }
 }
 
-// Функция для вывода матрицы на экран
 void print_matrix(int **matrix, int rows, int cols) {
     for (int i = 0; i < rows; i++) {
         for (int j = 0; j < cols; j++) {
@@ -26,7 +23,6 @@ void print_matrix(int **matrix, int rows, int cols) {
     }
 }
 
-// Функция для освобождения памяти, выделенной под матрицу
 void free_matrix(int **matrix, int rows) {
     for (int i = 0; i < rows; i++) {
         free(matrix[i]);
@@ -34,7 +30,6 @@ void free_matrix(int **matrix, int rows) {
     free(matrix);
 }
 
-// Функция для умножения матриц
 int **multiply_matrices(int **matrix1, int rows1, int cols1, int **matrix2, int rows2, int cols2) {
     if (cols1 != rows2) {
         printf("Ошибка: нельзя умножать матрицы с такими размерностями\n");
@@ -58,7 +53,6 @@ int **multiply_matrices(int **matrix1, int rows1, int cols1, int **matrix2, int 
     return result;
 }
 
-// Функция для сложения матриц
 int **add_matrices(int **matrix1, int **matrix2, int rows, int cols) {
     int **result = (int **)malloc(rows * sizeof(int *));
     for (int i = 0; i < rows; i++) {
@@ -75,17 +69,15 @@ int **add_matrices(int **matrix1, int **matrix2, int rows, int cols) {
 }
 
 int main() {
-    srand(time(NULL)); // инициализируем генератор случайных чисел
+    srand(time(NULL));
 
     int rows, cols;
 
-    // Получаем размер матриц от пользователя
     printf("Введите количество строк: ");
     scanf("%d", &rows);
     printf("Введите количество столбцов: ");
     scanf("%d", &cols);
 
-    // Выделяем память под матрицы
     int **matrix1 = (int **)malloc(rows * sizeof(int *));
     for (int i = 0; i < rows; i++) {
         matrix1[i] = (int *)malloc(cols * sizeof(int));
@@ -96,11 +88,9 @@ int main() {
         matrix2[i] = (int *)malloc(cols * sizeof(int));
     }
 
-    // Заполняем матрицы случайными числами
     fill_matrix(matrix1, rows, cols);
     fill_matrix(matrix2, rows, cols);
 
-    // Сохраняем матрицы в файл input.txt
     FILE *input_file = fopen("input.txt", "w");
     if (input_file == NULL) {
         printf("Ошибка при открытии файла input.txt\n");
@@ -126,11 +116,9 @@ int main() {
 
     fclose(input_file);
 
-    // Очищаем память, выделенную под матрицы
     free_matrix(matrix1, rows);
     free_matrix(matrix2, rows);
 
-    // Читаем матрицы из файла input.txt
     input_file = fopen("input.txt", "r");
     if (input_file == NULL) {
         printf("Ошибка при открытии файла input.txt\n");
@@ -139,7 +127,6 @@ int main() {
 
     fscanf(input_file, "%d %d\n", &rows, &cols);
 
-    // Выделяем память под матрицы
     matrix1 = (int **)malloc(rows * sizeof(int *));
     for (int i = 0; i < rows; i++) {
         matrix1[i] = (int *)malloc(cols * sizeof(int));
@@ -166,19 +153,15 @@ int main() {
 
     fclose(input_file);
 
-    // Замеряем время работы программы
     clock_t start_time = clock();
 
-    // Умножаем матрицы
     int **multiplied_matrix = multiply_matrices(matrix1, rows, cols, matrix2, rows, cols);
 
-    // Складываем матрицы
     int **added_matrix = add_matrices(matrix1, matrix2, rows, cols);
 
     clock_t end_time = clock();
     double execution_time = (double)(end_time - start_time) / CLOCKS_PER_SEC;
 
-    // Сохраняем результат в файл output.txt
     FILE *output_file = fopen("output.txt", "w");
     if (output_file == NULL) {
         printf("Ошибка при открытии файла output.txt\n");
@@ -203,10 +186,8 @@ int main() {
 
     fclose(output_file);
 
-    // Выводим время работы программы
     printf("Время работы программы: %f секунд\n", execution_time);
 
-    // Очищаем память
     free_matrix(matrix1, rows);
     free_matrix(matrix2, rows);
     free_matrix(multiplied_matrix, rows);
