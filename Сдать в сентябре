@@ -10,16 +10,16 @@ typedef struct {
 } Date;
 
 // Функция для рассчета количества дней между двумя датами
-int daysBetweenDates(Date date1, Date date2);
+int days_dates(Date date1, Date date2);
 
 // Функция для создания квадратной матрицы
-int** createMatrix(int m);
+int** create_matrix(int m);
 
 // Функция для вывода матрицы в файл
-void printMatrixToFile(int** matrix, int m, FILE* file);
+void print_matrix_to_file(int** matrix, int m, FILE* file);
 
 // Функция для освобождения памяти, выделенной под матрицу
-void freeMatrix(int** matrix, int m);
+void free_matrix(int** matrix, int m);
 
 int main() {
     clock_t start, end;
@@ -27,23 +27,23 @@ int main() {
     start = clock(); 
     
     // 1. Рассчитываем количество дней до даты
-    FILE* inputFile = fopen("input.txt", "r");
-    if (inputFile == NULL) {
+    FILE* in_file = fopen("input.txt", "r");
+    if (in_file == NULL) {
         printf("Ошибка открытия файла input.txt\n");
         return 1;
     }
 
     Date targetDate;
-    fscanf(inputFile, "%d.%d.%d", &targetDate.day, &targetDate.month, &targetDate.year);
-    fclose(inputFile);
+    fscanf(in_file, "%d.%d.%d", &targetDate.day, &targetDate.month, &targetDate.year);
+    fclose(in_file);
 
     time_t t = time(NULL);
     struct tm tm = *localtime(&t);
     Date currentDate = {tm.tm_mday, tm.tm_mon + 1, tm.tm_year + 1900};
 
-    int daysRemaining = daysBetweenDates(currentDate, targetDate);
+    int days_rem = days_dates(currentDate, targetDate);
     printf("Количество дней до %02d.%02d.%04d: %d\n", 
-           targetDate.day, targetDate.month, targetDate.year, daysRemaining);
+           targetDate.day, targetDate.month, targetDate.year, days_rem);
 
     // 2-3. Создаем матрицы и ищем две с одинаковой суммой элементов
     srand(time(NULL));
@@ -62,7 +62,7 @@ int main() {
         sums = (int*)realloc(sums, (count + 1) * sizeof(int));
 
         // Создаем новую матрицу
-        matrices[count] = createMatrix(m);
+        matrices[count] = create_matrix(m);
 
         // Рассчитываем сумму элементов новой матрицы
         sums[count] = 0;
@@ -78,17 +78,17 @@ int main() {
                 found = 1; // Нашли две матрицы с одинаковой суммой
 
                 // Выводим матрицы в файл output.txt
-                FILE* outputFile = fopen("output.txt", "w");
-                if (outputFile == NULL) {
+                FILE* output_file = fopen("output.txt", "w");
+                if (output_file == NULL) {
                     printf("Ошибка открытия файла output.txt\n");
                     return 1;
                 }
 
-                fprintf(outputFile, "Матрица 1:\n");
-                printMatrixToFile(matrices[i], m, outputFile);
-                fprintf(outputFile, "\nМатрица 2:\n");
-                printMatrixToFile(matrices[count], m, outputFile);
-                fclose(outputFile);
+                fprintf(output_file, "Матрица 1:\n");
+                print_matrix_to_file(matrices[i], m, output_file);
+                fprintf(output_file, "\nМатрица 2:\n");
+                print_matrix_to_file(matrices[count], m, output_file);
+                fclose(output_file);
                 break;
             }
         }
@@ -97,7 +97,7 @@ int main() {
 
     // Освобождаем память, выделенную под матрицы
     for (i = 0; i < count; i++) {
-        freeMatrix(matrices[i], m);
+        free_matrix(matrices[i], m);
     }
     free(matrices);
     free(sums);
@@ -110,7 +110,7 @@ int main() {
 }
 
 // Функция для рассчета количества дней между двумя датами
-int daysBetweenDates(Date date1, Date date2) {
+int days_dates(Date date1, Date date2) {
     // Простая реализация, не учитывающая високосные годы
     int daysInMonth[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
     int totalDays1 = date1.year * 365 + date1.day;
@@ -126,7 +126,7 @@ int daysBetweenDates(Date date1, Date date2) {
 }
 
 // Функция для создания квадратной матрицы
-int** createMatrix(int m) {
+int** create_matrix(int m) {
     int** matrix = (int**)malloc(m * sizeof(int*));
     for (int i = 0; i < m; i++) {
         matrix[i] = (int*)malloc(m * sizeof(int));
@@ -138,7 +138,7 @@ int** createMatrix(int m) {
 }
 
 // Функция для вывода матрицы в файл
-void printMatrixToFile(int** matrix, int m, FILE* file) {
+void print_matrix_to_file(int** matrix, int m, FILE* file) {
     for (int i = 0; i < m; i++) {
         for (int j = 0; j < m; j++) {
             fprintf(file, "%d ", matrix[i][j]);
@@ -148,7 +148,7 @@ void printMatrixToFile(int** matrix, int m, FILE* file) {
 }
 
 // Функция для освобождения памяти, выделенной под матрицу
-void freeMatrix(int** matrix, int m) {
+void free_matrix(int** matrix, int m) {
     for (int i = 0; i < m; i++) {
         free(matrix[i]);
     }
