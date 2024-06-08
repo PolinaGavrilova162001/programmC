@@ -1,0 +1,156 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+// Структура для хранения даты
+typedef struct {
+    int day;
+    int month;
+    int year;
+} Date;
+
+// Функция для рассчета количества дней между двумя датами
+int daysBetweenDates(Date date1, Date date2);
+
+// Функция для создания квадратной матрицы
+int** createMatrix(int m);
+
+// Функция для вывода матрицы в файл
+void printMatrixToFile(int** matrix, int m, FILE* file);
+
+// Функция для освобождения памяти, выделенной под матрицу
+void freeMatrix(int** matrix, int m);
+
+int main() {
+    clock_t start, end;
+    double cpu_time_used;
+    start = clock(); 
+    
+    // 1. Рассчитываем количество дней до даты
+    FILE* inputFile = fopen("input.txt", "r");
+    if (inputFile == NULL) {
+        printf("Ошибка открытия файла input.txt\n");
+        return 1;
+    }
+
+    Date targetDate;
+    fscanf(inputFile, "%d.%d.%d", &targetDate.day, &targetDate.month, &targetDate.year);
+    fclose(inputFile);
+
+    time_t t = time(NULL);
+    struct tm tm = *localtime(&t);
+    Date currentDate = {tm.tm_mday, tm.tm_mon + 1, tm.tm_year + 1900};
+
+    int daysRemaining = daysBetweenDates(currentDate, targetDate);
+    printf("Количество дней до %02d.%02d.%04d: %d\n", 
+           targetDate.day, targetDate.month, targetDate.year, daysRemaining);
+
+    // 2-3. Создаем матрицы и ищем две с одинаковой суммой элементов
+    srand(time(NULL));
+    int m, i, j;
+    printf("Введите размер матрицы (m): ");
+    scanf("%d", &m);
+
+    int*** matrices = NULL; // Массив указателей на матрицы
+    int* sums = NULL;      // Массив для хранения сумм элементов матриц
+    int count = 0;         // Количество созданных матриц
+    int found = 0;         // Флаг, указывающий на нахождение двух матриц с одинаковой суммой
+
+    while (!found) {
+        // Выделяем память для новой матрицы и ее суммы
+        matrices = (int***)realloc(matrices, (count + 1) * sizeof(int**));
+        sums = (int*)realloc(sums, (count + 1) * sizeof(int));
+
+        // Создаем новую матрицу
+        matrices[count] = createMatrix(m);
+
+        // Рассчитываем сумму элементов новой матрицы
+        sums[count] = 0;
+        for (i = 0; i < m; i++) {
+            for (j = 0; j < m; j++) {
+                sums[count] += matrices[count][i][j];
+            }
+        }
+
+        // Сравниваем сумму новой матрицы с суммами предыдущих матриц
+        for (i = 0; i < count; i++) {
+            if (sums[count] == sums[i]) {
+                found = 1; // Нашли две матрицы с одинаковой суммой
+
+                // Выводим матрицы в файл output.txt
+                FILE* outputFile = fopen("output.txt", "w");
+                if (outputFile == NULL) {
+                    printf("Ошибка открытия файла output.txt\n");
+                    return 1;
+                }
+
+                fprintf(outputFile, "Матрица 1:\n");
+                printMatrixToFile(matrices[i], m, outputFile);
+                fprintf(outputFile, "\nМатрица 2:\n");
+                printMatrixToFile(matrices[count], m, outputFile);
+                fclose(outputFile);
+                break;
+            }
+        }
+        count++;
+    }
+
+    // Освобождаем память, выделенную под матрицы
+    for (i = 0; i < count; i++) {
+        freeMatrix(matrices[i], m);
+    }
+    free(matrices);
+    free(sums);
+
+    //4. Замер времени
+    end = clock();
+    cpu_time_used = ((double) (end - start)) / CLOCKS_PER_SEC;
+    printf("Время выполнения программы: %f секунд\n", cpu_time_used);
+    return 0;
+}
+
+// Функция для рассчета количества дней между двумя датами
+int daysBetweenDates(Date date1, Date date2) {
+    // Простая реализация, не учитывающая високосные годы
+    int daysInMonth[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+    int totalDays1 = date1.year * 365 + date1.day;
+    for (int i = 0; i < date1.month - 1; i++) {
+        totalDays1 += daysInMonth[i];
+    }
+    int totalDays2 = date2.year * 365 + date2.day;
+    for (int i = 0; i < date2.month - 1; i++) {
+        totalDays2 += daysInMonth[i];
+    }
+    return
+    totalDays2 - totalDays1;
+}
+
+// Функция для создания квадратной матрицы
+int** createMatrix(int m) {
+    int** matrix = (int**)malloc(m * sizeof(int*));
+    for (int i = 0; i < m; i++) {
+        matrix[i] = (int*)malloc(m * sizeof(int));
+        for (int j = 0; j < m; j++) {
+            matrix[i][j] = rand() % 10;
+        }
+    }
+    return matrix;
+}
+
+// Функция для вывода матрицы в файл
+void printMatrixToFile(int** matrix, int m, FILE* file) {
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < m; j++) {
+            fprintf(file, "%d ", matrix[i][j]);
+        }
+        fprintf(file, "\n");
+    }
+}
+
+// Функция для освобождения памяти, выделенной под матрицу
+void freeMatrix(int** matrix, int m) {
+    for (int i = 0; i < m; i++) {
+        free(matrix[i]);
+    }
+    free(matrix);
+}
